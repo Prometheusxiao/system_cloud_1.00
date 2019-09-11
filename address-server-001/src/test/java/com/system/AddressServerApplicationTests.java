@@ -57,29 +57,36 @@ public class AddressServerApplicationTests {
                 html = AddressRequest.getHtml(cookie, url);
                 List<AddressBasisInfo> xian = xian(data, year, addressBasisInfoShengShi.getCode(), html);
                 getZt();
-                for (AddressBasisInfo addressBasisInfo : xian) {
-                    String address = addressBasisInfo.getAddressUrl();
+                for (AddressBasisInfo addressBasisInfoXian : xian) {
+                    String address = addressBasisInfoXian.getAddressUrl();
                     if(StringUtils.isNotBlank(address)){
                         url = basicUrl+code+"/"+address;
                         System.out.println("zhenjie = " + url);
                         html = AddressRequest.getHtml(cookie, url);
-                        List<AddressBasisInfo> zhenjie = jieZhen(data, year, addressBasisInfo.getCode(), html);
-                        System.out.println(JsonUtils.objectToJson(zhenjie));
+                        List<AddressBasisInfo> zhenjie = jieZhen(data, year, addressBasisInfoXian.getCode(), html);
+                        if(zhenjie!=null&&zhenjie.size()>0){
+                            for (AddressBasisInfo addressBasisInfoZhenjie : zhenjie) {
+                                saveAddressBasisInfo(addressBasisInfoZhenjie);
+                            }
+                        }
                         getZt();
                     } else {
-                        System.err.println("地址空 ： "+addressBasisInfo.getAddressName());
+                        System.err.println("地址空 ： "+addressBasisInfoXian.getAddressName());
                     }
-
+                    saveAddressBasisInfo(addressBasisInfoXian);
                 }
+                saveAddressBasisInfo(addressBasisInfoShengShi);
             }
+            saveAddressBasisInfo(addressBasisInfoSheng);
         }
-        for (AddressBasisInfo datum : data) {
-            AddressBasisInfo addressBasisInfo = addressBasisInfoMapper.selectByPrimaryKey(datum.getCode());
-            if(addressBasisInfo == null){
-                addressBasisInfoMapper.insert(datum);
-            } else {
-                addressBasisInfoMapper.updateByPrimaryKey(datum);
-            }
+    }
+
+    public void saveAddressBasisInfo(AddressBasisInfo addressBasisInfo){
+        AddressBasisInfo old = addressBasisInfoMapper.selectByPrimaryKey(addressBasisInfo.getCode());
+        if(old == null){
+            addressBasisInfoMapper.insert(addressBasisInfo);
+        } else {
+            addressBasisInfoMapper.updateByPrimaryKey(addressBasisInfo);
         }
     }
 
