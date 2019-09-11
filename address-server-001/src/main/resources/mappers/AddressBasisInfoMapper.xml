@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.basis.dao.AddressBasisInfoMapper">
+  <resultMap id="BaseResultMap" type="com.system.basis.bean.AddressBasisInfo">
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="super_code" jdbcType="VARCHAR" property="superCode" />
+    <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="address_name" jdbcType="VARCHAR" property="addressName" />
+    <result column="address_version" jdbcType="VARCHAR" property="addressVersion" />
+    <result column="address_url" jdbcType="VARCHAR" property="addressUrl" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    code, super_code, category_code, address_name, address_version, address_url, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from address_basis_info
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from address_basis_info
+    where code = #{code,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.system.basis.bean.AddressBasisInfo">
+    insert into address_basis_info (code, super_code, category_code,
+      address_name, address_version, address_url,
+      status)
+    values (#{code,jdbcType=VARCHAR}, #{superCode,jdbcType=VARCHAR}, #{categoryCode,jdbcType=VARCHAR},
+      #{addressName,jdbcType=VARCHAR}, #{addressVersion,jdbcType=VARCHAR}, #{addressUrl,jdbcType=VARCHAR},
+      #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.system.basis.bean.AddressBasisInfo">
+    insert into address_basis_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="superCode != null">
+        super_code,
+      </if>
+      <if test="categoryCode != null">
+        category_code,
+      </if>
+      <if test="addressName != null">
+        address_name,
+      </if>
+      <if test="addressVersion != null">
+        address_version,
+      </if>
+      <if test="addressUrl != null">
+        address_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="superCode != null">
+        #{superCode,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCode != null">
+        #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addressName != null">
+        #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressVersion != null">
+        #{addressVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="addressUrl != null">
+        #{addressUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.system.basis.bean.AddressBasisInfo">
+    update address_basis_info
+    <set>
+      <if test="superCode != null">
+        super_code = #{superCode,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCode != null">
+        category_code = #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addressName != null">
+        address_name = #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressVersion != null">
+        address_version = #{addressVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="addressUrl != null">
+        address_url = #{addressUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.system.basis.bean.AddressBasisInfo">
+    update address_basis_info
+    set super_code = #{superCode,jdbcType=VARCHAR},
+      category_code = #{categoryCode,jdbcType=VARCHAR},
+      address_name = #{addressName,jdbcType=VARCHAR},
+      address_version = #{addressVersion,jdbcType=VARCHAR},
+      address_url = #{addressUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR}
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectXian" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from address_basis_info
+    where LENGTH(super_code) <![CDATA[ > ]]> 10 AND address_url IS NOT NULL
+  </select>
+
+</mapper>

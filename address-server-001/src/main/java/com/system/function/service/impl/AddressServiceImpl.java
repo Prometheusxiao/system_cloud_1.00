@@ -1,6 +1,6 @@
-package com.system.basis.main.service.impl;
+package com.system.function.service.impl;
 
-import com.system.basis.main.service.AddressService;
+import com.system.function.service.AddressService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,4 +12,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Service
 public class AddressServiceImpl implements AddressService {
+
 }

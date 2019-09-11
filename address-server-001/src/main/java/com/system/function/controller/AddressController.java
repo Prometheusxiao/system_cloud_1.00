@@ -1,6 +1,6 @@
-package com.system.basis.main.controller;
+package com.system.function.controller;
 
-import com.system.basis.main.service.AddressService;
+import com.system.function.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

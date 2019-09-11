@@ -1,6 +1,8 @@
 package com.system.basis.initialization;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.ibatis.session.AutoMappingBehavior;
 import org.apache.ibatis.session.ExecutorType;
 import org.mybatis.spring.annotation.MapperScan;
@@ -50,4 +52,12 @@ public class InitializationBeans {
         return  new DruidDataSource();
     }
 
+    /**
+     * jackson
+     * Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class o
+     */
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+    }
 }
