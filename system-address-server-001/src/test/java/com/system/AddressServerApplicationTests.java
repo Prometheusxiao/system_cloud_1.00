@@ -2,7 +2,6 @@ package com.system;
 
 import com.system.basis.dao.AddressBasisInfoMapper;
 import com.system.basis.tools.AddressRequest;
-import com.system.basis.tools.JsonUtils;
 import com.system.bean.AddressBasisInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -14,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import tools.JsonUtils;
 
 import java.util.*;
 
