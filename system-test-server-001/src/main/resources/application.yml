@@ -1,6 +1,6 @@
 #address-server-001
 server:
-  port: 9888
+  port: 8888
 spring:
   application:
     name: test-server #应用程序名称，这个名字会注入到注册中心中,相同服务集群时名称一样，与访问路径无关，访问路径配置是server.servlet.context-path!
@@ -8,11 +8,11 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true #注册服务的时候使用服务的ip地址进行注册
-    instance-id: test-server-9888 #在eureka中的服务别名，区别于spring.application.name
+    instance-id: test-server-8888 #在eureka中的服务别名，区别于spring.application.name
   client:
     service-url:
       defaultZone:  http://eureka8101.com:8101/eureka/,http://eureka8102.com:8102/eureka/,http://eureka8103.com:8103/eureka/
 
 info: #在eureka中注册中心点击注册的服务别名（Status列）时跳转的页面信息，就是好看，没什么用
   server.name: test-server #服务名称
-  server.port: 9888 #服务的端口
+  server.port: 8888 #服务的端口

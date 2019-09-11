@@ -28,7 +28,7 @@ public class AddressServiceImpl implements AddressService {
             superCode = "2018";
         }
         AddressBasisInfo addressBasisInfo = new AddressBasisInfo();
-        addressBasisInfo.setCode("001");
+        addressBasisInfo.setCode("002");
         List<AddressBasisInfo> addressBasisInfos = addressBasisInfoMapper.selectBySuperCode(superCode);
         addressBasisInfos.add(addressBasisInfo);
         return addressBasisInfos;
